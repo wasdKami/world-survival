@@ -1,14 +1,16 @@
-import pygame
+import pygame, random
 from Images import triceratops_img
 
 dino_list = []
 
 class Dino:
-    def __init__(self, name, img, age, health, speed, damage):
+    def __init__(self, name, img, age, speed, damage):
         self.img = img
         self.name = name
         self.age = age
-        self.health = health
+        self.health = 100
+        self.food = 100
+        self.thirst = 100
         self.speed = speed
         self.damage = damage
 
@@ -16,11 +18,18 @@ class Dino:
         self.pos = pygame.Vector2(((pygame.display.Info().current_w / 2) - (self.img.get_width() / 2),
                                    (pygame.display.Info().current_h / 2) - (self.img.get_height() / 2)))
         self.rect = pygame.Rect(self.pos.x, self.pos.y, self.img.get_width(), self.img.get_height())
-        self.target = None
+        self.target = self.get_target()
+
+    def get_target(self):
+        target = pygame.Vector2(random.randint(100, pygame.display.Info().current_w - 100), random.randint(100, pygame.display.Info().current_h - 100))
+        return target
 
     def get_direction(self):
-        target_pos = pygame.mouse.get_pos()
-        distance = target_pos - self.pos
+        print(f'rect.center: {self.rect.center}')
+        print(f'target: {self.target}')
+        distance = self.target - self.pos
+        if distance.x < 1 and distance.y < 1:
+            self.target = self.get_target()
         distance.normalize_ip()
         direction = distance
         return direction
@@ -39,4 +48,4 @@ class Dino:
         self.draw()
         self.move_towards_target()
 
-triceratops = Dino("triceratops", triceratops_img, 23, 100, 2, 10)
+triceratops = Dino("triceratops", triceratops_img, 23, 100, 0.3, 10)
