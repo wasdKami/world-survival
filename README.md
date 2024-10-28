@@ -2,12 +2,12 @@
     I want my game to be a "ecosystem simulation". The game is supposed to be able to play itself but can be influenced by the "observer" -the player. The observers needs to watch the ecosystem and see what happens. He can influence the game by changing the environment or dinos. For example he can decide to remove food/water, create more dangers or create/remove dinos.
 
     more mechanics:
-    the game is top down view, you can zoom in and out
+    the game is top down view
     Place/remove area/items/dinos.
     change amount of hunger/thirst
     change weather
 
-    This game is for people just interested in a small demo about AI.
+    This game is for people just interested in a small demo about dinos walking around.
 
     for simplicity i will probably use figures or pixel art as style
 

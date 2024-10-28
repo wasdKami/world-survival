@@ -3,7 +3,7 @@ import pygame
 #You need to initialize the module. I see it as turning on the machine.
 pygame.init()
 
-from Dino import triceratops
+from Dino import dino_list
 
 #this is the title and image that you see at the top of the window
 pygame.display.set_caption("ecosystem simulation")
@@ -29,7 +29,8 @@ while RUNNING:
     SCREEN.fill("Dark Green")
 
     #Here you can write your game AFTER the fill so you draw on top of the fresh screen and BEFORE the flip which draws the display to the screen
-    triceratops.update()
+    for dino in dino_list:
+        dino.update()
 
     pygame.display.flip()
 
