@@ -1,13 +1,9 @@
-import pygame, random
+import pygame
+from GetPos import get_ran_pos
 from Images import triceratops_img, trex_img
 
 dino_list = []
 dino_types = ["herbivore", "carnivore", "omnivore"]
-
-def get_target():
-    target = pygame.Vector2(random.randint(100, pygame.display.Info().current_w - 100),
-                            random.randint(100, pygame.display.Info().current_h - 100))
-    return target
 
 class Dino:
     def __init__(self, name, img, age, speed, damage, dino_type):
@@ -23,9 +19,9 @@ class Dino:
         self.states = ["Wander", "Chase"]
         self.state = self.states[0]
 
-        self.target = get_target()
+        self.target = get_ran_pos()
         self.move = pygame.Vector2(0, 0)
-        self.pos = get_target()
+        self.pos = get_ran_pos()
         self.rect = pygame.Rect(self.pos.x, self.pos.y, self.img.get_width(), self.img.get_height())
 
     def get_direction(self):
@@ -37,7 +33,7 @@ class Dino:
         else:
             distance = self.target - self.pos
             if distance.x < 1 and distance.y < 1:
-                self.target = get_target()
+                self.target = get_ran_pos()
             distance.normalize_ip()
             direction = distance
             return direction
@@ -79,16 +75,16 @@ class Dino:
         self.check_nearby()
 
 class Triceratops(Dino):
-    def __init__(self, name, img, age, speed, damage, dino_type):
-        super().__init__(name, img, age, speed, damage, dino_type)
+    def __init__(self):
+        super().__init__("Triceratops", triceratops_img, 5, 0.3, 10, "Herbivore")
 
 class Trex(Dino):
-    def __init__(self, name, img, age, speed, damage, dino_type):
-        super().__init__(name, img, age, speed, damage, dino_type)
+    def __init__(self):
+        super().__init__("Trex", trex_img, 10, 0.5, 25, "Carnivore")
 
 for _ in range(10):
-    dino_list.append(Triceratops("Triceratops", triceratops_img, random.randint(4, 55), 0.3, 10, "Herbivore"))
+    dino_list.append(Triceratops())
 
 for _ in range(10):
-    dino_list.append(Trex("Trex", trex_img, random.randint(4, 55), 0.5, 25, "Carnivore"))
+    dino_list.append(Trex())
 

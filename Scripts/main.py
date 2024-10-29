@@ -4,6 +4,7 @@ import pygame
 pygame.init()
 
 from Dino import dino_list
+from Item import item_list
 
 #this is the title and image that you see at the top of the window
 pygame.display.set_caption("ecosystem simulation")
@@ -15,6 +16,7 @@ DISPLAY_INFO = pygame.display.Info()
 SCREEN = pygame.display.set_mode((DISPLAY_INFO.current_w, DISPLAY_INFO.current_h))
 #I am defining a clock so i can set a framerate so the tick rate is the same on every pc
 CLOCK = pygame.time.Clock()
+START_TICK = pygame.time.get_ticks()
 #Creating a bool to check if my game is running otherwise close the game
 RUNNING = True
 
@@ -31,6 +33,9 @@ while RUNNING:
     #Here you can write your game AFTER the fill so you draw on top of the fresh screen and BEFORE the flip which draws the display to the screen
     for dino in dino_list:
         dino.update()
+
+    for item in item_list:
+        item.update()
 
     pygame.display.flip()
 
