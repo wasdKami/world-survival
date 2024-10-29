@@ -28,11 +28,14 @@ while RUNNING:
             RUNNING = False
 
     #every frame i am drawing the background with a solid color to "reset" the display
-    SCREEN.fill("Dark Green")
-
+    CURRENT_TICKS = pygame.time.get_ticks()
+    SCREEN.fill("chartreuse4")
     #Here you can write your game AFTER the fill so you draw on top of the fresh screen and BEFORE the flip which draws the display to the screen
     for dino in dino_list:
-        dino.update()
+        if dino.is_alive:
+            dino.update()
+        else:
+            dino_list.remove(dino)
 
     for item in item_list:
         item.update()
