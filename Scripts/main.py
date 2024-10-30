@@ -16,6 +16,7 @@ DISPLAY_INFO = pygame.display.Info()
 SCREEN = pygame.display.set_mode((DISPLAY_INFO.current_w, DISPLAY_INFO.current_h))
 #I am defining a clock so i can set a framerate so the tick rate is the same on every pc
 CLOCK = pygame.time.Clock()
+DELTATIME = 0
 START_TICK = pygame.time.get_ticks()
 #Creating a bool to check if my game is running otherwise close the game
 RUNNING = True
@@ -44,6 +45,7 @@ while RUNNING:
 
     #Creating a clock that makes sure the program wont run more then the framerate which i capped on 60
     CLOCK.tick(60)
+    DELTATIME = CLOCK.tick(60) / 1000
 
 #Uninitializing pygame
 pygame.quit()
